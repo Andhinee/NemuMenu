@@ -1,0 +1,146 @@
+/* Reset default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Header */
+.header {
+  background-color: #d97b25;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-buttons a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Container */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+/* Menu Page */
+.menu-restaurant-name {
+  font-size: 1.8rem;
+  color: #d97b25;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Menu Thumbnail */
+.menu-thumbnail {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.thumbnail-image {
+  width: 150px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Full Menu Image */
+.menu-full {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.full-image {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+/* Price Note */
+.price-note {
+  background-color: #d97b25;
+  color: white;
+  text-align: center;
+  padding: 0.8rem; /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* Tombol */
+  button {
+    background-color: #d97b25;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  /* Halaman */
+  .page {
+    display: none;
+  }
+
+  .page.active {
+    display: block;
+  }
+
+  /* Gambar */
+  img {
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #2e2e2e;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+}
+
+.footer-logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer-icons {
+  margin-top: 1rem;
+}
