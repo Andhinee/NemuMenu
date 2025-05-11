@@ -2,32 +2,44 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Restoran extends Model
 {
+    use HasFactory;
+
     protected $table = 'RESTORAN';
-    protected $primaryKey = 'RESTORAN_ID';
+    protected $primaryKey = 'RESTO_ID';
+    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = [
-        'NAMA_RESTORAN',
+        'RESTO_ID',
+        'NAMA_RESTO',
+        'IMAGE',
         'LOKASI',
-        'DESKRIPSI',
+        'NO_TELP',
+        'RANGE_HARGA',
+        'WAKTU_BUKA'
     ];
 
+    // Relationship with Menu
     public function menu()
     {
-        return $this->hasMany(Menu::class, 'RESTORAN_ID', 'RESTORAN_ID');
+        return $this->hasOne(Menu::class, 'RESTO_ID', 'RESTO_ID');
     }
 
-    public function ulasan()
+    // Relationship with User favorites
+    public function favoritedBy()
     {
-        return $this->hasMany(Ulasan::class, 'RESTORAN_ID', 'RESTORAN_ID');
+        return $this->belongsToMany(UserNemumenu::class, 'FAVORIT', 'RESTO_ID', 'USER_ID')
+                    ->withPivot('FAVORIT_ID');
     }
 
-    public function favorit()
+    // Relationship with Reviews
+    public function reviews()
     {
-        return $this->hasMany(Favorit::class, 'RESTORAN_ID', 'RESTORAN_ID');
+        return $this->hasMany(Ulasan::class, 'RESTO_ID', 'RESTO_ID');
     }
 }

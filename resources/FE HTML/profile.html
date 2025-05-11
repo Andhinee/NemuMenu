@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profil User - NemuMenu</title>
+    <link rel="stylesheet" href="css/profile.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <img src="image/nemumenu.png" alt="Nemumenu Logo" class="logo" />
+    </header>
+
+    <main class="profile-container">
+      <section class="profile-left">
+        <h2>Edit Profil user</h2>
+        <div class="profile-picture">
+          <img src="image/user_profile2.png" alt="Foto Profil" class="avatar" />
+          <button class="upload-btn">Upload Foto</button>
+        </div>
+        <form class="profile-form">
+          <label>Email</label>
+          <input type="email" placeholder="Email" />
+
+          <label>No. Telepon</label>
+          <input type="tel" placeholder="Nomor Telepon" />
+
+          <label>Nama</label>
+          <div class="name-fields">
+            <input type="text" placeholder="Nama Depan" />
+            <input type="text" placeholder="Nama Belakang" />
+          </div>
+
+          <label>Tanggal Lahir</label>
+          <div class="dob-fields">
+            <input type="text" placeholder="Tanggal" />
+            <input type="text" placeholder="Bulan" />
+            <input type="text" placeholder="Tahun" />
+          </div>
+
+          <label>Jenis Kelamin</label>
+          <input type="text" placeholder="Jenis Kelamin" />
+
+          <div class="form-buttons">
+            <button type="submit" class="update-btn">Update Profil</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="profile-right">
+        <h3>Pengaturan Akun</h3>
+        <button class="setting-btn">Ganti Password</button>
+        <a href="admin-dashboard.html" class="setting-btn"
+          >Manajemen Restoran</a
+        >
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <div class="logo">nemumenu</div>
+          <p>Tempat berburu pengalaman kuliner</p>
+          <p>Jl. Sarjana Teknik no.12A, Tembalang, Semarang, 10004</p>
+          <p>081234567891 | info@nemumenu.com</p>
+        </div>
+        <div class="footer-icons">
+          <span>🎵</span>
+          <span>✉️</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -7,32 +7,30 @@ use App\Models\Restoran;
 
 class RestoranController extends Controller
 {
+    /**
+     * Menampilkan semua restoran (hanya untuk user).
+     */
     public function index()
     {
-        return Restoran::all();
+        // Mengambil semua restoran yang ada
+        $restorans = Restoran::all();
+        return response()->json($restorans);
     }
 
+    /**
+     * Menampilkan detail restoran berdasarkan ID (hanya untuk user).
+     */
     public function show($id)
     {
-        return Restoran::findOrFail($id);
-    }
+        // Mencari restoran berdasarkan ID
+        $restoran = Restoran::find($id);
 
-    public function store(Request $request)
-    {
-        return Restoran::create($request->all());
-    }
+        // Jika restoran tidak ditemukan
+        if (!$restoran) {
+            return response()->json(['message' => 'Restoran tidak ditemukan'], 404);
+        }
 
-    public function update(Request $request, $id)
-    {
-        $restoran = Restoran::findOrFail($id);
-        $restoran->update($request->all());
-        return $restoran;
-    }
-
-    public function destroy($id)
-    {
-        $restoran = Restoran::findOrFail($id);
-        $restoran->delete();
-        return response()->json(['message' => 'Restoran deleted']);
+        // Mengembalikan data restoran
+        return response()->json($restoran);
     }
 }

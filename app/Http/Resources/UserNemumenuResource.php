@@ -2,18 +2,17 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserNemumenuResource extends JsonResource
 {
-    public function toArray(Request $request): array
+    public function toArray($request)
     {
         return [
-            'USER_ID' => $this->USER_ID,
-            'USERNAME' => $this->USERNAME,
-            'EMAIL' => $this->EMAIL,
-            'PASSWORD_USER' => $this->PASSWORD_USER,
+            'id' => $this->USER_ID,
+            'username' => $this->USERNAME,
+            'email' => $this->EMAIL,
+            'password' => $this->PASSWORD_USER, // Sebaiknya jangan menampilkan password secara langsung
         ];
     }
 }

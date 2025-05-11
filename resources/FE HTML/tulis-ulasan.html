@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulis Ulasan - Nemumenu</title>
+    <link rel="stylesheet" href="css/tulis-ulasan.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <img src="image/nemumenu.png" alt="Nemumenu Logo" class="logo" />
+     
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+      <div class="review-form-card">
+        <h2>Nabila Steak</h2>
+        <form>
+          <div class="form-row">
+            <!-- Kiri -->
+            <div class="form-left">
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Tulis Judul dari review kamu di sini..."
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  placeholder="Tulis detail rasa, suasana, dan pelayanan dari kunjungan kamu di sini"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input type="text" placeholder="Menu yang dipesan" required />
+              </div>
+            </div>
+
+            <!-- Kanan -->
+            <div class="form-right">
+              <div class="form-group">
+                <label>Tanggal pergi:</label>
+                <input type="date" required />
+              </div>
+              <div class="form-group">
+                <label>Harga per orang:</label>
+                <input type="text" placeholder="< Rp. 50.000" required />
+              </div>
+              <div class="form-group">
+                <label>Rasa Makanan:</label>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Suasana:</label>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Harga dibanding rasa:</label>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Pelayanan:</label>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Kebersihan:</label>
+                <div class="rating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="upload-btn">Upload Foto</button>
+          </div>
+
+          <div class="buttons">
+            <button type="submit" class="submit-btn">Submit Review</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-logo">nemumenu</div>
+      <p>Tempat berburu pengalaman kuliner</p>
+      <p>Jl. Sarjana Teknik no.12A, Tembalang, Semarang, 10004</p>
+      <p>081234567891 | info@nemumenu.com</p>
+      <div class="footer-icons"><span>📱</span> <span>✉️</span></div>
+    </footer>
+  
+<script>
+  document.querySelectorAll('.rating').forEach(rating => {
+    const stars = rating.querySelectorAll('span');
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        stars.forEach((s, i) => {
+          if (i <= index) {
+            s.classList.add('active');
+          } else {
+            s.classList.remove('active');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+
+  </body>
+</html>

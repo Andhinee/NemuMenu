@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - NemuMenu</title>
+    <link rel="stylesheet" href="css/popup.css" />
+  </head>
+  <body>
+    <div class="overlay" style="display: flex">
+      <div class="popup">
+        <span class="close-btn" onclick="window.location.href='index.html'">×</span>
+        <h2>Masuk ke Akunmu</h2>
+        <input id="email" type="text" placeholder="Email atau Username" required />
+        <input id="password" type="password" placeholder="Password" required />
+        <button onclick="handleLogin()">Login</button>
+        <p>Belum punya akun? <a href="signup.html">Sign Up</a></p>
+        <p id="errorMsg" style="color: red; font-size: 0.9rem;"></p>
+      </div>
+    </div>
+
+    <script>
+    async function handleLogin() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('user', JSON.stringify(data.user)); // Simpan data user
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('errorMsg').textContent = data.message || 'Login gagal, periksa kembali email atau username dan password Anda.';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Terjadi kesalahan, silakan coba lagi nanti.');
+        }
+    }
+    </script>
+  </body>
+</html>

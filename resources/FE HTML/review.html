@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Restoran - Nemumenu</title>
+    <link rel="stylesheet" href="css/review.css" />
+    <style>
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <img src="image/nemumenu.png" alt="Nemumenu Logo" class="logo" />
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <!-- HALAMAN INFO RESTORAN (Awal) -->
+      <section id="homePage" class="page active">
+        <section class="restaurant-card">
+          <div class="restaurant-image-container">
+            <img
+              src="image/nabilasteak.png"
+              alt="Nabila Steak"
+              class="restaurant-image"
+            />
+            <div class="rating-badge">5.0</div>
+          </div>
+          <div class="restaurant-info">
+            <h2 class="restaurant-name">Nabila Steak</h2>
+            <div class="restaurant-details">
+              <p>Jl. Menuju IPK 4, Tembalang, Semarang</p>
+              <p>Senin-Jumat (12.00-20.00) 📞 08191995999</p>
+              <p>Rp. 10.000- Rp. 25.000 /orang</p>
+            </div>
+            <div class="buttons">
+              <a href="tulis-ulasan.html" class="review-button"
+                >Tulis Ulasan ✏️</a
+              >
+              <button class="menu-button" onclick="showMenu()">
+                Lihat Menu
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="review-card">
+          <img src="image/niki.jpg" alt="User Photo" class="user-photo" />
+          <div class="review-content">
+            <div class="review-header">
+              <h3 class="review-title">Murce banget!! Bapak Ibu nya ramah!</h3>
+              <div class="rating-small">5.0</div>
+            </div>
+            <p class="review-text">
+              Daging ayamnya empuk dan juicy di dalam, tapi tetap renyah banget
+              di luar—pas digigit tuh kriuknya berasa! Bumbunya juga meresap
+              sampai ke dalam, gak hambar. Saus steak-nya cocok banget, ada rasa
+              gurih dan sedikit manis yang nge-blend sama ayamnya. Side dish-nya
+              juga oke, kentangnya garing dan sayurnya masih segar. Overall, ini
+              salah satu steak ayam krispi terenak yang pernah aku coba. Worth
+              it banget buat harga segitu!
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <!-- Halaman Menu -->
+      <section id="menuPage" class="container page">
+        <h2 class="menu-restaurant-name">Nabila Steak</h2>
+
+        <!-- Kotak Thumbnail -->
+        <div class="menu-thumbnail-box">
+          <div class="thumbnail-wrapper">
+            <img
+              src="image/menu steak.png"
+              alt="Thumbnail Menu"
+              class="thumbnail-image"
+            />
+            <div class="thumbnail-caption"></div>
+          </div>
+        </div>
+
+        <!-- Gambar Full Size -->
+        <div class="menu-full">
+          <img src="image/menu steak.png" alt="Full Menu" class="full-image" />
+        </div>
+
+        <!-- Catatan Harga -->
+        <div class="price-note">
+          Harga dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih dahulu.
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-logo">nemumenu</div>
+      <p>Tempat berburu pengalaman kuliner</p>
+      <p>Jl. Sarjana Teknik no.12A, Tembalang, Semarang, 10004</p>
+      <p>081234567891 | info@nemumenu.com</p>
+      <div class="footer-icons"><span>📱</span> <span>✉️</span></div>
+    </footer>
+
+    <!-- JS Script -->
+    <script>
+      function showMenu() {
+        history.pushState({ page: "menu" }, "", "#menu");
+        document.getElementById("homePage").classList.remove("active");
+        document.getElementById("menuPage").classList.add("active");
+      }
+
+      window.onpopstate = function (event) {
+        if (event.state && event.state.page === "menu") {
+          document.getElementById("homePage").classList.remove("active");
+          document.getElementById("menuPage").classList.add("active");
+        } else {
+          document.getElementById("menuPage").classList.remove("active");
+          document.getElementById("homePage").classList.add("active");
+        }
+      };
+
+      // Saat halaman pertama kali load
+      window.addEventListener("load", function () {
+        history.replaceState({ page: "review" }, "", location.pathname);
+      });
+    </script>
+  </body>
+</html>

@@ -38,11 +38,8 @@ return [
             'password'       => env('DB_PASSWORD', 'kelompok1'),
             'charset'        => 'AL32UTF8',
             'prefix'         => '',
-            'prefix_schema'  => env('DB_SCHEMA_PREFIX', ''),
             'service_name'   => env('DB_SERVICE_NAME', 'xepdb1'),
-            'connection_string' => 'sqlplus nemu_menu_user/kelompok1@localhost:1521/xepdb1',
         ],
-
     ],
 
     /*

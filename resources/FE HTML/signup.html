@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - NemuMenu</title>
+    <link rel="stylesheet" href="css/popup.css" />
+  </head>
+  <body>
+    <div class="overlay" style="display: flex">
+      <div class="popup">
+        <span class="close-btn" onclick="window.location.href='index.html'">×</span>
+        <h2>Buat Akun Baru</h2>
+        <!-- Form untuk signup -->
+        <form id="signupForm" method="POST" action="http://localhost:8000/api/signup">
+          <input type="text" id="username" name="username" placeholder="Username" required />
+          <input type="email" id="email" name="email" placeholder="Alamat Email" required />
+          <input type="password" id="password" name="password" placeholder="Password" required />
+          <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Password" required />
+          <button type="submit">Sign Up</button>
+        </form>
+
+        <p>Sudah punya akun? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk menangani signup
+      async function handleSignup(event) {
+        event.preventDefault(); // Mencegah reload halaman
+
+        // Ambil nilai dari input
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("password_confirmation").value;
+
+        // Validasi input
+        if (!username || !email || !password || !confirmPassword) {
+          alert("Semua kolom harus diisi!");
+          return;
+        }
+        if (password !== confirmPassword) {
+          alert("Password dan Konfirmasi Password tidak cocok!");
+          return;
+        }
+
+        // Kirim data ke backend
+        try {
+          const response = await fetch("http://localhost:8000/api/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username,
+              email,
+              password,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            alert("Signup berhasil, silakan login.");
+            window.location.href = "login.html"; // Redirect ke halaman login
+          } else {
+            alert(result.message || "Signup gagal, coba lagi.");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Terjadi kesalahan, coba lagi.");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const signupForm = document.getElementById("signupForm");
+        signupForm.addEventListener("submit", handleSignup);
+      });
+    </script>
+  </body>
+</html>
