@@ -25,6 +25,7 @@
               document.getElementById('steak-image').src = restoran.image_url;
 
               // Menambahkan event listener untuk mengarahkan ke review.html saat diklik
+              // dan menyimpan data restoran ke localStorage
               document.getElementById('steak-link').addEventListener('click', function () {
                 // Menyimpan data restoran yang dipilih ke localStorage
                 localStorage.setItem('selectedRestaurant', JSON.stringify(restoran));
