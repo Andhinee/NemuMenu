@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulis Ulasan - Nemumenu</title>
+    <link rel="stylesheet" href="css/tulis-ulasan.css" />
+    <style>
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+
+      .popup-content {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .popup-content.success img {
+        background-color: #4caf50;
+        border-radius: 50%;
+        padding: 10px;
+        width: 60px;
+        height: 60px;
+      }
+
+      .popup-content.error img {
+        background-color: #f44336;
+        border-radius: 50%;
+        padding: 10px;
+        width: 60px;
+        height: 60px;
+      }
+
+      .popup-content p {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <img src="image/nemumenu.png" alt="Nemumenu Logo" class="logo" />
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+      <div class="review-form-card">
+        <h2>Nabila Steak</h2>
+        <form id="reviewForm">
+          <div class="form-row">
+            <!-- Kiri -->
+            <div class="form-left">
+              <div class="form-group">
+                <input
+                  id="reviewTitle"
+                  type="text"
+                  placeholder="Tulis Judul dari review kamu di sini..."
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  id="reviewDetails"
+                  placeholder="Tulis detail rasa, suasana, dan pelayanan dari kunjungan kamu di sini"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <input
+                  id="orderedMenu"
+                  type="text"
+                  placeholder="Menu yang dipesan"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Kanan -->
+            <div class="form-right">
+              <div class="form-group">
+                <label>Tanggal pergi:</label>
+                <input id="visitDate" type="date" required />
+              </div>
+              <div class="form-group">
+                <label>Harga per orang:</label>
+                <input
+                  id="pricePerPerson"
+                  type="text"
+                  placeholder="< Rp. 50.000"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Rasa Makanan:</label>
+                <div class="rating" id="foodTasteRating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Suasana:</label>
+                <div class="rating" id="ambienceRating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Harga dibanding rasa:</label>
+                <div class="rating" id="priceTasteRating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Pelayanan:</label>
+                <div class="rating" id="serviceRating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Kebersihan:</label>
+                <div class="rating" id="cleanlinessRating">
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="upload-btn">Upload Foto</button>
+          </div>
+
+          <div class="buttons">
+            <button type="submit" class="submit-btn">Submit Review</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <div class="footer">
+      <div class="footer-left">
+        <img src="image/nemumenu.png" alt="Logo" class="logo" />
+        <p>Tempat berburu pengalaman kuliner</p>
+        <p>Jl. Sarjana Teknik no.12A, Tembalang, Semarang, 10004</p>
+        <p>081234567891 | info@nemumenu.com</p>
+      </div>
+      <div class="footer-right footer-icons">
+        <img src="image/tiktok.png" alt="TikTok" />
+        <img src="image/gmail.png" alt="Gmail" />
+      </div>
+    </div>
+
+    <!-- Popup Notification -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup-content" id="popupContent">
+        <img src="image/berhasil.png" alt="Status Icon" id="popupImage" />
+        <p id="popupText">Review berhasil dikirim!</p>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".rating").forEach((rating) => {
+        const stars = rating.querySelectorAll("span");
+        stars.forEach((star, index) => {
+          star.addEventListener("click", () => {
+            stars.forEach((s, i) => {
+              s.classList.toggle("active", i <= index);
+            });
+          });
+        });
+      });
+
+      function validateForm() {
+        const reviewTitle = document.getElementById("reviewTitle").value;
+        const reviewDetails = document.getElementById("reviewDetails").value;
+        const orderedMenu = document.getElementById("orderedMenu").value;
+        const visitDate = document.getElementById("visitDate").value;
+        const pricePerPerson = document.getElementById("pricePerPerson").value;
+
+        if (
+          !reviewTitle ||
+          !reviewDetails ||
+          !orderedMenu ||
+          !visitDate ||
+          !pricePerPerson
+        ) {
+          return false;
+        }
+
+        const ratings = [
+          "foodTasteRating",
+          "ambienceRating",
+          "priceTasteRating",
+          "serviceRating",
+          "cleanlinessRating",
+        ];
+
+        return ratings.every(
+          (id) => document.querySelectorAll(`#${id} .active`).length > 0
+        );
+      }
+
+      const submitBtn = document.querySelector(".submit-btn");
+      const popupOverlay = document.getElementById("popupOverlay");
+      const popupContent = document.getElementById("popupContent");
+      const popupText = document.getElementById("popupText");
+      const popupImage = document.getElementById("popupImage");
+
+      const popupBlur = document.getElementById("popupBlur");
+
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const isValid = validateForm();
+        const popup = document.getElementById("popup");
+        const popupText = document.getElementById("popupText");
+        const popupIcon = popup.querySelector(".popup-icon");
+
+        // Show the popup blur effect
+        const popupBlur = document.getElementById("popupBlur");
+        popupBlur.style.display = "block"; // Show the blur
+
+        if (isValid) {
+          popup.className = "popup success";
+          popupText.textContent = "Review berhasil dikirim!";
+          popupIcon.textContent = "✔";
+        } else {
+          popup.className = "popup";
+          popupText.textContent = "Ulasan belum berhasil diunggah";
+          popupIcon.textContent = "✖";
+        }
+
+        popup.style.display = "flex";
+
+        setTimeout(() => {
+          popup.style.display = "none";
+          popupBlur.style.display = "none"; // Hide the blur after the popup disappears
+        }, 3000);
+      });
+    </script>
+    <!-- Popup Notification -->
+    <div class="popup" id="popup">
+      <div class="popup-icon">✖</div>
+      <div class="popup-text" id="popupText">
+        Ulasan belum berhasil diunggah
+      </div>
+    </div>
+    <!-- Blur Overlay -->
+    <div class="popup-blur" id="popupBlur"></div>
+
+    <!-- Popup Notification -->
+    <div class="popup" id="popup">
+      <div class="popup-icon">✖</div>
+      <div class="popup-text" id="popupText">
+        Ulasan belum berhasil diunggah
+      </div>
+    </div>
+  </body>
+</html>

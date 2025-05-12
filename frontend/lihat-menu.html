@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Nemumenu</title>
+    <style>
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Halaman Home -->
+    <div id="homePage" class="page active">
+      <h1>Selamat Datang</h1>
+      <button onclick="goToReview()">Ke Review</button>
+    </div>
+
+    <!-- Halaman Review -->
+    <div id="reviewPage" class="page">
+      <h1>Halaman Review</h1>
+      <p>Ini halaman review restoran.</p>
+      <button onclick="goToMenu()">Lihat Menu</button>
+    </div>
+
+    <!-- Halaman Menu -->
+    <div id="menuPage" class="page">
+      <h1>Halaman Menu</h1>
+      <p>Menu restoran tampil di sini.</p>
+    </div>
+
+    <script>
+      function navigateTo(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+      }
+
+      function goToReview() {
+        history.pushState({ page: "review" }, "", "#review");
+        navigateTo("reviewPage");
+      }
+
+      function goToMenu() {
+        history.pushState({ page: "menu" }, "", "#menu");
+        navigateTo("menuPage");
+      }
+
+      window.addEventListener("popstate", function (event) {
+        if (event.state) {
+          if (event.state.page === "menu") {
+            navigateTo("menuPage");
+          } else if (event.state.page === "review") {
+            navigateTo("reviewPage");
+          } else {
+            navigateTo("homePage");
+          }
+        } else {
+          // fallback kalau gak ada state
+          navigateTo("homePage");
+        }
+      });
+
+      // Saat awal buka, set state home
+      window.addEventListener("load", function () {
+        history.replaceState({ page: "home" }, "", location.pathname);
+        navigateTo("homePage");
+      });
+    </script>
+  </body>
+</html>

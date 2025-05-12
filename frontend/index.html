@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NemuMenu</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
+
+    <header class="hero">
+      <div class="top-bar">
+        <img src="image/nemumenu.png" alt="Nemumenu Logo" class="logo" />
+        <a href="profile.html">
+          <img
+            src="image/user_profile.png"
+            alt="Profile"
+            style="width: 32px; height: 32px; border-radius: 50%"
+          />
+        </a>
+      </div>
+
+      <img src="image/makanan.png" alt="Makanan" class="header-image" />
+      <div class="search-bar">
+        <input type="text" placeholder="Cari makanan favoritmu..." />
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="places">
+        <div class="section-header">
+          <h2>3 Tempat makan enak di</h2>
+          <select class="place-select">
+            <option value="Banjarsari">Banjarsari</option>
+            <option value="Gondang">Gondang</option>
+          </select>
+          <h2>untuk menu</h2>
+
+          <select class="menu-select">
+            <option value="">Select</option>
+            <option value="Sate">Sate</option>
+            <option value="Steak">Steak</option>
+            <option value="Nasi goreng">Nasi Goreng</option>
+            <option value="Ketoprak">Ketoprak</option>
+            <option value="Soto Lamongan">Soto Lamongan</option>
+            <option value="Ayam Gepuk">Ayam Gepuk</option>
+          </select>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <img src="image/sate.png" alt="Sate" />
+            <div class="card-info">
+              <h3>Sate</h3>
+              <p>Jl. Gondang Raya No.50</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="image/steak.png" alt="Steak" />
+            <div class="card-info">
+              <a href="review.html" class="title-link">Steak</a>
+              <div class="alamat">Jl. Gondang Timur II</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <img src="image/nasi_goreng.png" alt="Nasi Goreng" />
+            <div class="card-info">
+              <h3>Nasi Goreng</h3>
+              <p>Jl. Banjarsari Selatan I</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="places">
+        <div class="section-header">
+          <h2>3 Tempat makan yang baru buka</h2>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <img src="image/ketoprak.png" alt="Ketoprak" />
+            <div class="card-info">
+              <h3>Ketoprak</h3>
+              <p>Jl.Banjarsari No.44</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="image/soto.png" alt="Soto Ayam Lamongan" />
+            <div class="card-info">
+              <h3>Soto Ayam Lamongan</h3>
+              <p>Jl. Gondang Barat I</p>
+            </div>
+          </div>
+          <div class="card">
+            <img src="image/ayam gepuk.png" alt="Ayam Bu Gepuk" />
+            <div class="card-info">
+              <h3>Ayam Bu Gepuk</h3>
+              <p>Jl. banjarsari No.100</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="event">
+        <div class="event-card">
+          <img src="image/cfd.png" alt="Car Free Day" class="card-image" />
+          <div class="event-info">
+            <h3>Car Free Day: UMKM Tembalang</h3>
+            <p>20 April 2025</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      <div class="footer-left">
+        <img src="image/nemumenu.png" alt="Logo" class="logo" />
+        <p>Tempat berburu pengalaman kuliner</p>
+        <p>Jl. Sarjana Teknik no.12A, Tembalang, Semarang, 10004</p>
+        <p>081234567891 | info@nemumenu.com</p>
+      </div>
+      <div class="footer-right footer-icons">
+        <img src="image/tiktok.png" alt="TikTok" />
+        <img src="image/gmail.png" alt="Gmail" />
+      </div>
+    </div>
+  </body>
+</html>

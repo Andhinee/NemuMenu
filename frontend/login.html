@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - NemuMenu</title>
+    <link rel="stylesheet" href="css/popup.css" />
+  </head>
+  <body>
+    <div class="overlay" style="display: flex">
+      <div class="popup">
+        <span class="close-btn" onclick="window.location.href='index.html'"
+          >×</span
+        >
+        <h2>Masuk ke Akunmu</h2>
+        <input type="text" placeholder="Email atau Username" />
+        <input type="password" placeholder="Password" />
+        <button>Login</button>
+        <p>Belum punya akun? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </div>
+    <script>
+      function handleLogin() {
+        const email = document.querySelector('input[type="email"]').value;
+        if (email === "admin@nemumenu.com") {
+          localStorage.setItem("role", "admin");
+        } else {
+          localStorage.setItem("role", "user");
+        }
+
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "home.html";
+      }
+    </script>
+  </body>
+</html>

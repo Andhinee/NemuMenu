@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - NemuMenu</title>
+    <link rel="stylesheet" href="css/popup.css" />
+  </head>
+  <body>
+    <div class="overlay" style="display: flex">
+      <div class="popup">
+        <span class="close-btn" onclick="window.location.href='index.html'"
+          >×</span
+        >
+        <h2>Buat Akun Baru</h2>
+        <input type="text" placeholder="Username" />
+        <input type="email" placeholder=" Alamat Email" />
+        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Konfirmasi Password" />
+        <button>Login</button>
+        <p>Sudah punya akun? <a href="login.html">Login</a></p>
+      </div>
+    </div>
+    <script>
+      function handleSignup() {
+        alert("Signup berhasil, silakan login.");
+        window.location.href = "login.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const signupBtn = document.querySelector("button");
+        if (signupBtn) {
+          signupBtn.addEventListener("click", handleSignup);
+        }
+      });
+    </script>
+  </body>
+</html>
